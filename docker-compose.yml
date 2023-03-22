@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  web:
+    container_name: shopping-php
+    volumes:
+      - ./php:/var/www/html
+    restart: always
+    build: ./php
+    ports:
+      - 80:80
+    depends_on:
+      - database
+
+  database:
+    container_name: shopping-db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "33060:3306"
+    volumes:
+      - ./mysql/officemin.sql:/docker-entrypoint-initdb.d/init.sql
