@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // WARNING!
 // Don't confuse the username (root) and password (empty string) for
 // the MySQL database with the username/password from the form!
-$servername = "database";
+$servername = "database"; // instead of localhost like we used to
 $username = "root";
-$password = "password";
+$password = "password"; // set earlier in MYSQL_ROOT_PASSWORD
 $dbname = "officemin";
 
 // Create connection
