@@ -3,22 +3,19 @@ version: "3.9"
 services:
   web:
     container_name: shopping-php
-    volumes:
-      - ./php:/var/www/html
-    restart: always
     build: ./php
     ports:
       - 80:80
     depends_on:
-      - database
+      - database # tells Docker to start `database` service first
 
   database:
     container_name: shopping-db
-    image: mysql:8.0
+    image: mysql:8.0 # use this as base image for the `database` service
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password # set root password for MySQL
     ports:
-      - "33060:3306"
+      - 33060:3306 # mount local port 33060 to container's port 3306
     volumes:
-      - ./mysql/officemin.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql/officemin.sql:/docker-entrypoint-initdb.d/init.sql #
